@@ -1,67 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'product/base.html' %}
+{% load static %}
 
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% block css %}
+<link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
+{% endblock %}
 
-    <title>Store - Каталог</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/static/vendor/css/products.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Store</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="products.html">Каталог <i class="fas fa-shopping-bag"></i> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="users/login.html">Войти <i class="fas fa-sign-in-alt"></i></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="users/profile.html">Профиль</a>
-                        </li>
-                        <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
-                        <li><a class="dropdown-item" href="#">Админ-панель</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Выйти
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+{% block content %}
 <!-- Page Content -->
 <div class="container">
 
@@ -91,13 +36,13 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="/static/vendor/img/slides/slide-1.jpg" alt="First slide">
+                        <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-1.jpg' %}" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="/static/vendor/img/slides/slide-2.jpg" alt="Second slide">
+                        <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-2.jpg' %}" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="/static/vendor/img/slides/slide-3.jpg" alt="Third slide">
+                        <img class="d-block img-fluid" src="{% static 'vendor/img/slides/slide-3.jpg' %}" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -116,7 +61,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Adidas-hoodie.png"
+                                 src="{% static 'vendor/img/products/Adidas-hoodie.png' %}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -136,7 +81,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Blue-jacket-The-North-Face.png" alt="">
+                                 src="{% static 'vendor/img/products/Blue-jacket-The-North-Face.png' %}" alt="">
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
@@ -157,7 +102,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Brown-sports-oversized-top-ASOS-DESIGN.png"
+                                 src="{% static 'vendor/img/products/Brown-sports-oversized-top-ASOS-DESIGN.png' %}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -177,7 +122,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Black-Nike-Heritage-backpack.png"
+                                 src="{% static 'vendor/img/products/Black-Nike-Heritage-backpack.png' %}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -197,7 +142,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Black-Dr-Martens-shoes.png"
+                                 src="{% static 'vendor/img/products/Black-Dr-Martens-shoes.png' %}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -217,7 +162,7 @@
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="/static/vendor/img/products/Dark-blue-wide-leg-ASOs-DESIGN-trousers.png"
+                                 src="{% static 'vendor/img/products/Dark-blue-wide-leg-ASOs-DESIGN-trousers.png' %}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -255,7 +200,9 @@
 
 </div>
 <!-- /.container -->
+{% endblock %}
 
+{% block footer %}
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
@@ -263,17 +210,4 @@
     </div>
     <!-- /.container -->
 </footer>
-
-<!-- Bootstrap core JavaScript -->
-<script src="/static/vendor/jquery/jquery.min.js"></script>
-<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
-<!-- FontAwesome script -->
-<script src="/static/vendor/fontawesome/fontawesome-icons.js" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+{% endblock %}
