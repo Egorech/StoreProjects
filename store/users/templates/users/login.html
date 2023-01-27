@@ -6,13 +6,24 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                         {% if messages or form.non_field_errors %}
+                        <div class="alert
+                        {% if messages %} alert-success {% else %} alert-warning {% endif %}
+                         alert-dismissible fade show" role="alert"
                              style="margin-top: 50px;">
-                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% else %}
+                                {{ form.non_field_errors }}
+                            {% endif %}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                    {% endif %}
+
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Авторизация</h3>
                             </div>
