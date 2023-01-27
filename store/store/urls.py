@@ -23,7 +23,7 @@ from product.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('product.urls')),
-
+    path('users/', include('users.urls')),
 ]
 
 if settings.DEBUG:
