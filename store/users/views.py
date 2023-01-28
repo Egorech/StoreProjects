@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
-
+from product.models import Basket
 from  users.models import User
 from  users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 # Create your views here.
@@ -43,6 +43,7 @@ def profile(request):
         form = UserProfileForm(instance = request.user)
     context = {'title': 'Профиль',
                'form': form,
+               'baskets': Basket.objects.all(),
                }
     return render(request, 'users/profile.html', context)
 
