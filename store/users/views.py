@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from product.models import Basket
@@ -32,6 +33,7 @@ def register(request):
     context = {'form': form}
     return render(request, 'users/register.html', context)
 
+@login_required
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(instance = request.user, data = request.POST, files = request.FILES)
