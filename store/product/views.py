@@ -1,12 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
+from django.views.generic import TemplateView
 from .models import *
 from django.core.paginator import Paginator
+
 # Create your views here.
 
-def index(request):
-    context = {'title': 'Store'}
-    return render(request, 'product/index.html',context)
+class IndexView(TemplateView):
+    template_name = 'product/index.html'
+
 
 def products(request, category_id=None, page_number=1):
     if category_id:
