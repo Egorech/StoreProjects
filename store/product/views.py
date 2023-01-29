@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from .models import *
 from django.core.paginator import Paginator
 
@@ -9,6 +9,21 @@ from django.core.paginator import Paginator
 class IndexView(TemplateView):
     template_name = 'product/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data()
+        context['title'] = 'Store'
+        return context
+
+
+class ProductsListView(ListView):
+    model = Product
+    template_name = 'product/products.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductsListView, self).get_context_data()
+        context['title'] = 'Store-Каталог'
+        context['productcategorie'] = ProductCategory.objects.all()
+        return context
 
 def products(request, category_id=None, page_number=1):
     if category_id:
