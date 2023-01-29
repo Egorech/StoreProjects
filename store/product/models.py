@@ -16,6 +16,10 @@ class ProductCategory(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
 class Product(models.Model):
     name = models.CharField(max_length = 255)
     description = models.TextField()
@@ -26,6 +30,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'product'
+        verbose_name_plural = 'products'
 
 class Basket(models.Model):
     user = models.ForeignKey(to = User, on_delete = models.CASCADE)
