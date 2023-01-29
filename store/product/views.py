@@ -1,24 +1,27 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
 from .models import *
-from users.models import User
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request):
     context = {'title': 'Store'}
     return render(request, 'product/index.html',context)
 
-def products(request, category_id=None):
+def products(request, category_id=None, page_number=1):
     if category_id:
         category = ProductCategory.objects.get(id=category_id)
         products = Product.objects.filter(category=category)
     else:
         products = Product.objects.all()
-    productcategorie = ProductCategory.objects.all()
+
+    paginator = Paginator(object_list = products, per_page = 3)
+    products_paginator = paginator.page(page_number)
+
     context = {
         'title': 'Store-Каталог',
         'productcategorie': ProductCategory.objects.all(),
-        'products': products,
+        'products': products_paginator,
     }
     return render(request, 'product/products.html', context)
 
