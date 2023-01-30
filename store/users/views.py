@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -6,6 +7,7 @@ from product.models import Basket
 from  users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 # Create your views here.
 from django.contrib import auth, messages
+from common.views import TitleMixin
 
 def login(request):
     if request.method == 'POST':
@@ -22,16 +24,15 @@ def login(request):
     context = {'form': form}
     return render(request, 'users/login.html', context)
 
-class UserRegistrationView(CreateView):
+
+class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = UserRegistrationForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('login.html')
+    success_message = 'Вы успешно зарегестрированы!!!'
+    title = 'Store-Регистрация'
 
-    def get_context_data(self, **kwargs):
-        context = super(UserRegistrationView, self).get_context_data()
-        context['title'] = 'Store-Регистрация'
-        return context
 
 """
 def register(request):
@@ -47,17 +48,17 @@ def register(request):
     return render(request, 'users/register.html', context)
 """
 
-class UserProfileView(UpdateView):
+class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     template_name = 'users/profile.html'
+    title = 'Store-Личный кабинет'
 
     def get_success_url(self):
         return reverse_lazy('profile', args=(self.object.id,))
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
-        context['title'] = 'Store-Личный кабинет'
         context['baskets'] = Basket.objects.filter(user=self.object)
         return context
 

@@ -2,23 +2,20 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, CreateView
 from .models import *
-from django.core.paginator import Paginator
+from common.views import TitleMixin
 
 # Create your views here.
 
-class IndexView(TemplateView):
+class IndexView(TitleMixin, TemplateView):
     template_name = 'product/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data()
-        context['title'] = 'Store'
-        return context
+    title = 'Store'
 
 
-class ProductsListView(ListView):
+class ProductsListView(TitleMixin, ListView):
     model = Product
     template_name = 'product/products.html'
     paginate_by = 3
+    title = 'Store-Каталог'
 
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()
@@ -27,7 +24,6 @@ class ProductsListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
-        context['title'] = 'Store-Каталог'
         context['productcategorie'] = ProductCategory.objects.all()
         return context
 
