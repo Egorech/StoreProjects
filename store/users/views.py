@@ -1,13 +1,19 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, UpdateView
-from .models import User
+from django.views.generic import CreateView, UpdateView, TemplateView
+from .models import User, EmailVerification
 from product.models import Basket
 from  users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 # Create your views here.
 from django.contrib import auth, messages
 from common.views import TitleMixin
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
 
 def login(request):
     if request.method == 'POST':
@@ -85,6 +91,18 @@ def profile(request):
                }
     return render(request, 'users/profile.html', context)
 """
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
+
+class EmailVerificationView(TitleMixin, TemplateView):
+    title = 'Store - Подтверждение электронной почты'
+    template_name = 'users/email_verification.html'
+
+    def get(self, request, *args, **kwargs):
+        code = kwargs['code']
+        user = User.objects.get(email=kwargs['email'])
+        email_verifications = EmailVerification.objects.filter(user=user, code=code)
+        if email_verifications.exists() and not email_verifications.first().is_expired():
+            user.is_verified_email = True
+            user.save()
+            return super(EmailVerificationView, self).get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('index'))
