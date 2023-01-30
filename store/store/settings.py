@@ -133,3 +133,9 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/users/login/'
+
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'tupikinjegor@yandex.ru'
+EMAIL_HOST_PASSWORD = 'mk@FVC6p6iD3h!K'
+EMAIL_USE_SSL = True
